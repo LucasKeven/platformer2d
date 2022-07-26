@@ -8,17 +8,19 @@ public class MenuButtonsManager : MonoBehaviour
     public List<GameObject> buttons;
 
     [Header("Animations Variables")]
-    public float duration = .2f;
-    public float delay = .05f;
+    public float duration = .1f;
+    public float startDelay = .1f;
+    public float delay = .1f;
     public Ease easy = Ease.OutBack;
 
     private void OnEnable()
-    {/*
+    {
         HideAllButtons();
-        ShowButtons();
-        */
+        Invoke(nameof(ShowButtons),startDelay);
+        
+        //ShowButtons();
     }
-    /*
+    
     private void HideAllButtons()
     {
         foreach(var b in buttons)
@@ -27,7 +29,7 @@ public class MenuButtonsManager : MonoBehaviour
             b.SetActive(false);
         }
     }
-    */
+    
     private void ShowButtons()
     {
         //foreach (var b in buttons)
@@ -35,9 +37,8 @@ public class MenuButtonsManager : MonoBehaviour
         {
             var b = buttons[i];
             b.SetActive(true);
-            b.transform.DOScale(1, duration).SetDelay(i*delay).SetEase(easy); 
+            b.transform.DOScale(1, duration).SetDelay(startDelay + i*delay).SetEase(easy);
+            //b.transform.DOScale(1, duration).SetDelay(i*delay).SetEase(easy);
         }
-    }
-
-    
+    }    
 }
