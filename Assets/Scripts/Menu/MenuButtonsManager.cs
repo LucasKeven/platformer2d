@@ -13,11 +13,12 @@ public class MenuButtonsManager : MonoBehaviour
     public Ease easy = Ease.OutBack;
 
     private void OnEnable()
-    {
+    {/*
         HideAllButtons();
         ShowButtons();
+        */
     }
-
+    /*
     private void HideAllButtons()
     {
         foreach(var b in buttons)
@@ -26,7 +27,7 @@ public class MenuButtonsManager : MonoBehaviour
             b.SetActive(false);
         }
     }
-
+    */
     private void ShowButtons()
     {
         //foreach (var b in buttons)
