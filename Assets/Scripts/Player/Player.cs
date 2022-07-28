@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {   
+    [Header("Rigibody")]
     public Rigidbody2D myRigidbody;
-    public Vector2 friction = new Vector2(0.1f, 0);
-    public Vector2 velocity;
+
+    [Header("Character Friction")]
+    public Vector2 friction = new Vector2(0.1f, 0);    
+
+    [Header("Movement")]
     public float speed;
-    public float forceJump = 100;
+    public float speedRun;
+
+    [Header("Jump")]
+    public float forceJump = 2;
+
+    [Header("")]
+    private float _currentSpeed;
+
     void Start()
     {
         
@@ -22,24 +33,31 @@ public class Player : MonoBehaviour
 
     public void HandleMovement()
     {
-        if(Input.GetKey(KeyCode.LeftArrow))
+
+        if (Input.GetKey(KeyCode.LeftShift))            
+                _currentSpeed = speedRun;
+            else
+                _currentSpeed = speed;
+
+
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             //myRigidbody.MovePosition(myRigidbody.position - velocity * Time.deltaTime);
-            myRigidbody.velocity = new Vector2(-speed, myRigidbody.velocity.y);
+            myRigidbody.velocity = new Vector2(- _currentSpeed, myRigidbody.velocity.y);
         }
-        else if(Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
-            myRigidbody.velocity = new Vector2(+speed, myRigidbody.velocity.y);
+            myRigidbody.velocity = new Vector2(_currentSpeed, myRigidbody.velocity.y);
         }
 
         //
 
-        if(myRigidbody.velocity.x > 0)
+        if (myRigidbody.velocity.x > 0)
         {
             myRigidbody.velocity += friction;
         }
-        else if(myRigidbody.velocity.x < 0)
+        else if (myRigidbody.velocity.x < 0)
         {
             myRigidbody.velocity -= friction;
         }
@@ -47,7 +65,7 @@ public class Player : MonoBehaviour
 
     public void HandleJump()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
             myRigidbody.velocity = Vector2.up * forceJump;
     }
 }
