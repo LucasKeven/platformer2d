@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
 
     public void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             myRigidbody.velocity = Vector2.up * forceJump;
             myRigidbody.transform.localScale = Vector2.one;
