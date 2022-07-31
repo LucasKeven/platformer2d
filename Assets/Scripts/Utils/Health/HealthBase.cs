@@ -8,6 +8,7 @@ public class HealthBase : MonoBehaviour
     public float startLife = 1;
 
     public bool destroyOnKill = false;
+    public float delayToKill = 0f;
 
     private float _currentLife;
     private bool _isDead;
@@ -42,7 +43,7 @@ public class HealthBase : MonoBehaviour
 
         if (destroyOnKill)
         {
-            Destroy(gameObject);
+            Destroy(gameObject, delayToKill);
         }
     }
 }
